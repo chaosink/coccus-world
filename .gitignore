@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+coccus-world
+
+# Directories
+gimp/
