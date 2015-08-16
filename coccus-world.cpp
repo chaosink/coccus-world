@@ -36,6 +36,7 @@ int window_height    = 768;  // w
 
 int game             = 1;    // g
 int print            = 0;    // p
+int develop          = 0;    // e
 
 const int max_particle_num = 10000;
 double border = 0.05;
@@ -172,7 +173,7 @@ int main(int argc, char** argv) {
 /*--------------------------------------------------*/
 // command line arguments
 	int oc; // option character
-	while((oc = getopt(argc, argv, "n:r:s: dfw: ghp")) != -1) {
+	while((oc = getopt(argc, argv, "n:r:s: dfw: eghp")) != -1) {
 		switch(oc) {
 			case 'n':
 				particle_num = atoi(optarg);
@@ -196,6 +197,9 @@ int main(int argc, char** argv) {
 				window_ratio = window_height * 1.0 / window_width;
 				break;
 
+			case 'e':
+				develop = 1;
+				break;
 			case 'g':
 				game = 1;
 				break;
@@ -402,7 +406,7 @@ int main(int argc, char** argv) {
 	do {
 		if(glfwGetKey(window, GLFW_KEY_LEFT ) == GLFW_PRESS) total_speed = glm::clamp(total_speed - 0.025, -10.0, 10.0);
 		if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) total_speed = glm::clamp(total_speed + 0.025, -10.0, 10.0);
-	if(1 || particles[0].dead) {
+	if(develop || particles[0].dead) {
 		if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) particles[0].speed.x -= 0.0001;
 		if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) particles[0].speed.x += 0.0001;
 		if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) particles[0].speed.y -= 0.0001;
@@ -464,7 +468,7 @@ int main(int argc, char** argv) {
 						particles[i].radius *= 1.1;
 						break;
 					}
-			} else if(glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) { // key X, add or subtract
+			} else if(glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) { // key X, add or remove
 				particles[particle_num].radius = rand() % 2000 / 2000.0f * max_radius;
 				particles[particle_num].pos = glm::dvec2(xpos_clamp, ypos_clamp);
 				particles[particle_num].speed = glm::dvec2((rand() % 2000 - 1000.0f) / 2000000.0f, (rand() % 2000 - 1000.0f) / 2000000.0f);
