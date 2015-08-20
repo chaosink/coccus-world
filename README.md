@@ -63,9 +63,11 @@ key or button|function
 * rigion selection
 * angle of cue arrow after scaling
 * choose charactor
+* code refactoring
 
 ###### Gameplay
 * eat small circles in the corner only by decreasing
+* expand area, zooming in and out
 
 ## Screentshots
 ![1](http://7xkk5t.com1.z0.glb.clouddn.com/coccus_world_1.png)
