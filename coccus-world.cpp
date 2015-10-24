@@ -316,7 +316,7 @@ int main(int argc, char** argv) {
 		do {
 			particles[0].radius = rand() % 2000 / 2000.0f * max_radius;
 			particles[0].pos = glm::dvec2((rand() % 2000 - 1000.0f) / 1000.0f * (1 - border * window_ratio), (rand() % 2000 - 1000.0f) / 1000.0f * (1 - border));
-			particles[0].radius = max_radius * 0.4;
+			particles[0].radius = max_radius * 0.6;
 			particles[0].pos = glm::dvec2(0.0, 0.0);
 		} while(!Inside(0));
 		for(int i = 1; i < particle_num; i++)

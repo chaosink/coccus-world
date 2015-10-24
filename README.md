@@ -30,7 +30,7 @@ Common:
 
 key or button|function
 :-:|:-:
-`LEFT` `RIGHT`|slow(can turn to reverse direction), accelerate
+`LEFT` `RIGHT`|decelerate(can turn to reverse direction), accelerate
 `Left mouse button` with `Z`|increase size
 `Right mouse button` with `Z`|decrease size
 `Left mouse button` with `X`|add coccus
