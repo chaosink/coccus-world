@@ -11,6 +11,7 @@
 GLFWwindow* window;
 
 #include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/rotate_vector.hpp>
 
 #include "shader.hpp"
@@ -75,7 +76,7 @@ void SortParticles() {
 			particles[i] = particles[j];
 			particles[j] = temp;
 			i++;
-			j--;	
+			j--;
 		}
 	}
 //	std::sort( particles + game, particles + particle_num);
@@ -91,7 +92,7 @@ void SortParticlesByRadius() {
 
 void CollisionTest(int n) {
 	static double time_collision = 0;
-	double 
+	double
 		left = (particles[n].radius + border) * window_ratio - 1, right = 1 - (border + particles[n].radius) * window_ratio,
 		down = (particles[n].radius + border)                - 1, up    = 1 - (border + particles[n].radius)               ;
 
@@ -425,7 +426,7 @@ int main(int argc, char** argv) {
 
 
 	/*-----------------------------------*/
-	// drag 
+	// drag
 		if(drag && drag_target != -1) {
 			if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
 				particles[drag_target].pos = glm::dvec2(xpos_clamp, ypos_clamp) + drag_vector;
@@ -984,7 +985,7 @@ int main(int argc, char** argv) {
 				x = (y - pos1.y) * (pos1.x - pos2.x) / (pos1.y - pos2.y) + pos1.x;
 			}
 			pos1_border = glm::dvec2(x, y);
-			
+
 			x = border * window_ratio - 1;
 			y = (x - pos1.x) * (pos1.y - pos2.y) / (pos1.x - pos2.x) + pos1.y;
 			if(y > 1 - border) {
@@ -1207,7 +1208,7 @@ int main(int argc, char** argv) {
 			-0.05, 0.05,
 			 0.05, 0.05,
 		};
-		
+
 		double cursor_uv[4][2] = {
 			 0.0, 1.0 - 0.0,
 			 1.0, 1.0 - 0.0,
@@ -1216,7 +1217,11 @@ int main(int argc, char** argv) {
 		};
 
 		for(int i = 0; i < 4; i++) {
-			glm::dvec2 rotated_cursor_vertex = glm::dvec2(xpos_clamp / window_ratio, ypos_clamp) + glm::rotate(glm::dvec2(cursor_vertex[i][0], cursor_vertex[i][1]), double((acos(beta) * (direction.y > 0 ? 1 : -1)) / PI * 180));
+			glm::dvec2 rotated_cursor_vertex =
+				glm::dvec2(xpos_clamp / window_ratio, ypos_clamp) +
+				glm::rotate(
+					glm::dvec2(cursor_vertex[i][0], cursor_vertex[i][1]),
+					double((acos(beta) * (direction.y > 0 ? 1 : -1))));
 			g_vertex_buffer_data[i][0] = rotated_cursor_vertex.x * window_ratio;
 			g_vertex_buffer_data[i][1] = rotated_cursor_vertex.y;
 			g_vertex_buffer_data[i][2] = 0;

@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <SOIL.h>
+#include <SOIL/SOIL.h>
 
 GLuint LoadTexture(const char * image_name, int *image_width, int *image_height, int force_channels) {
 	unsigned char *image_buffer;
